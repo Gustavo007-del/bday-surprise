@@ -12,11 +12,18 @@ export default function ProposalSection() {
     if (!containerRef.current) return;
     
     const container = containerRef.current.getBoundingClientRect();
-    const maxX = container.width - 100;
-    const maxY = container.height - 50;
+    const maxX = container.width - 120;
+    const maxY = container.height - 60;
     
-    const newX = Math.random() * maxX;
-    const newY = Math.random() * maxY;
+    // Generate random position far from current position
+    let newX, newY;
+    do {
+      newX = Math.random() * maxX;
+      newY = Math.random() * maxY;
+    } while (
+      Math.abs(newX - noPosition.x) < 100 && 
+      Math.abs(newY - noPosition.y) < 50
+    );
     
     setNoPosition({ x: newX, y: newY });
   };
@@ -108,7 +115,6 @@ export default function ProposalSection() {
           {/* YES Button */}
           <motion.button
             onClick={handleYes}
-            whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.95 }}
             className="absolute left-1/4 top-1/2 transform -translate-x-1/2 -translate-y-1/2 px-8 py-4 rounded-full text-lg font-bold transition-all duration-300 shadow-lg"
             style={{
@@ -127,7 +133,7 @@ export default function ProposalSection() {
               x: noPosition.x,
               y: noPosition.y,
             }}
-            transition={{ duration: 0.3, type: "spring", bounce: 0.8 }}
+            transition={{ duration: 0.15, ease: "easeOut" }}
             className="absolute right-1/4 top-1/2 transform translate-x-1/2 -translate-y-1/2 px-8 py-4 rounded-full text-lg font-bold transition-all duration-300 shadow-lg"
             style={{
               background: "linear-gradient(135deg, rgba(255,255,255,0.1), rgba(255,255,255,0.05))",
