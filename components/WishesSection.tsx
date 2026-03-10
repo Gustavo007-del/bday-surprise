@@ -6,7 +6,7 @@ const WISHES = [
   {
     e: "🌟",
     t: "May Your Dreams Soar",
-    d: "Like stars that never fade, may every dream you hold dear take flight and illuminate your path forward."
+    d: "Like stars that never fade, may every dream comes true and it will dear."
   },
   {
     e: "💫",
@@ -21,7 +21,7 @@ const WISHES = [
   {
     e: "✨",
     t: "A Beautiful New Chapter",
-    d: "Every birthday is a fresh page. May this one open a chapter brimming with adventure, growth, and pure magic."
+    d: "Every birthday is a fresh page. May this one open a chapter brimming with adventure, growth, and pure magic padikanm kuripe."
   }
 ];
 
@@ -48,7 +48,7 @@ export default function WishesSection() {
             Here's to You, Theslin
           </h2>
           <p
-            className="text-white/48 max-w-2xl mx-auto leading-relaxed text-base md:text-lg"
+            className="text-white max-w-2xl mx-auto leading-relaxed text-base md:text-lg"
             style={{ fontFamily: "var(--font-playfair)" }}
           >
             On this magical night of&nbsp;
@@ -93,7 +93,7 @@ export default function WishesSection() {
               >
                 {w.t}
               </h3>
-              <p className="text-white/43 text-sm leading-relaxed">{w.d}</p>
+              <p className="text-white text-sm leading-relaxed">{w.d}</p>
             </motion.div>
           ))}
         </div>

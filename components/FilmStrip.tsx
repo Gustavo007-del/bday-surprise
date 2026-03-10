@@ -3,25 +3,25 @@
 import { motion } from "framer-motion";
 
 const ROW1 = [
-  { src: "https://picsum.photos/seed/fs1/320/210",  label: "Together 💛"   },
-  { src: "https://picsum.photos/seed/fs2/320/210",  label: "Laughter ✨"   },
-  { src: "https://picsum.photos/seed/fs3/320/210",  label: "Golden Hour"   },
-  { src: "https://picsum.photos/seed/fs4/320/210",  label: "Pure Joy"      },
-  { src: "https://picsum.photos/seed/fs5/320/210",  label: "Our World 🌸"  },
-  { src: "https://picsum.photos/seed/fs6/320/210",  label: "Sunshine"      },
-  { src: "https://picsum.photos/seed/fs7/320/210",  label: "Memories 🌟"   },
-  { src: "https://picsum.photos/seed/fs8/320/210",  label: "Forever"       },
+  { src: "https://res.cloudinary.com/dwfm7p4kf/image/upload/v1773160862/WhatsApp_Image_2026-03-10_at_9.33.53_PM_4_qmqmw6.jpg",  label: "Together 💛"   },
+  { src: "https://res.cloudinary.com/dwfm7p4kf/image/upload/v1773162156/WhatsApp_Image_2026-03-10_at_10.32.00_PM_iaw6xf.jpg",  label: "Laughter ✨"   },
+  { src: "https://res.cloudinary.com/dwfm7p4kf/image/upload/v1773160924/WhatsApp_Image_2026-03-10_at_9.58.54_PM_pj8eek.jpg",  label: "Golden Hour"   },
+  { src: "https://res.cloudinary.com/dwfm7p4kf/image/upload/v1773160921/WhatsApp_Image_2026-03-10_at_9.58.53_PM_mq7clx.jpg",  label: "Pure Joy"      },
+  { src: "https://res.cloudinary.com/dwfm7p4kf/image/upload/v1773160918/WhatsApp_Image_2026-03-10_at_9.58.47_PM_rswftd.jpg",  label: "Our World 🌸"  },
+  { src: "https://res.cloudinary.com/dwfm7p4kf/image/upload/v1773160932/WhatsApp_Image_2026-03-10_at_9.58.55_PM_zxjsor.jpg",  label: "Sunshine"      },
+  { src: "https://res.cloudinary.com/dwfm7p4kf/image/upload/v1773160897/WhatsApp_Image_2026-03-10_at_9.58.55_PM_1_lxz53l.jpg",  label: "Memories 🌟"   },
+  { src: "https://res.cloudinary.com/dwfm7p4kf/image/upload/v1773160978/WhatsApp_Image_2026-03-10_at_9.58.46_PM_k90iv4.jpg",  label: "Forever"       },
 ];
 
 const ROW2 = [
-  { src: "https://picsum.photos/seed/fs9/320/210",  label: "Best Days 💫"  },
-  { src: "https://picsum.photos/seed/fs10/320/210", label: "Radiant"       },
-  { src: "https://picsum.photos/seed/fs11/320/210", label: "In Bloom 🌺"   },
-  { src: "https://picsum.photos/seed/fs12/320/210", label: "Stars"         },
-  { src: "https://picsum.photos/seed/fs13/320/210", label: "Pure Magic"    },
-  { src: "https://picsum.photos/seed/fs14/320/210", label: "Grace"         },
-  { src: "https://picsum.photos/seed/fs15/320/210", label: "Dreaming 💝"   },
-  { src: "https://picsum.photos/seed/fs16/320/210", label: "Always"        },
+  { src: "https://res.cloudinary.com/dwfm7p4kf/image/upload/v1773160934/WhatsApp_Image_2026-03-10_at_9.58.54_PM_2_ghmqvp.jpg",  label: "Best Days 💫"  },
+  { src: "https://res.cloudinary.com/dwfm7p4kf/image/upload/v1773160937/WhatsApp_Image_2026-03-10_at_9.58.45_PM_fydzpd.jpg", label: "Radiant"       },
+  { src: "https://res.cloudinary.com/dwfm7p4kf/image/upload/v1773160533/WhatsApp_Image_2026-03-10_at_10.22.40_AM_iyjlsf.jpg", label: "In Bloom 🌺"   },
+  { src: "https://res.cloudinary.com/dwfm7p4kf/image/upload/v1773160534/WhatsApp_Image_2026-03-10_at_12.40.19_PM_iewsxy.jpg", label: "Stars"         },
+  { src: "https://res.cloudinary.com/dwfm7p4kf/image/upload/v1773160934/WhatsApp_Image_2026-03-10_at_9.58.54_PM_2_ghmqvp.jpg", label: "Pure Magic"    },
+  { src: "https://res.cloudinary.com/dwfm7p4kf/image/upload/v1773163048/WhatsApp_Image_2026-03-10_at_9.33.53_PM_5_watoue.jpg", label: "Grace"         },
+  { src: "https://res.cloudinary.com/dwfm7p4kf/image/upload/v1773160991/WhatsApp_Image_2026-03-10_at_9.58.43_PM_qq0eyh.jpg", label: "Dreaming 💝"   },
+  { src: "https://res.cloudinary.com/dwfm7p4kf/image/upload/v1773160986/WhatsApp_Image_2026-03-10_at_9.58.44_PM_1_yd4pmd.jpg", label: "Always"        },
 ];
 
 /* ── Film sprocket holes ── */
@@ -135,7 +135,7 @@ export default function FilmStrip() {
         >
           Reel of Memories
         </h2>
-        <p className="text-white/28 text-xs tracking-[0.42em] uppercase">
+        <p className="text-white text-xs tracking-[0.42em] uppercase">
           Every frame, a story ✦
         </p>
       </motion.div>

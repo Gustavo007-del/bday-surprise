@@ -1,3 +1,4 @@
+
 "use client";
 
 import { useRef, useState, useCallback } from "react";
@@ -11,12 +12,12 @@ interface Img {
 }
 
 const IMAGES: Img[] = [
-  { id: 1, src: "https://picsum.photos/seed/theslin1/700/460", title: "Pure Elegance",    sub: "A soul that radiates light"    },
-  { id: 2, src: "https://picsum.photos/seed/theslin2/700/460", title: "Golden Days",      sub: "Every moment, a treasure"      },
-  { id: 3, src: "https://picsum.photos/seed/theslin3/700/460", title: "Radiant Grace",    sub: "Beautiful inside & out"        },
-  { id: 4, src: "https://picsum.photos/seed/theslin4/700/460", title: "Star of the Room", sub: "You light up every space"      },
-  { id: 5, src: "https://picsum.photos/seed/theslin5/700/460", title: "23 & Fabulous",    sub: "Your best chapter starts now"  },
-  { id: 6, src: "https://picsum.photos/seed/theslin6/700/460", title: "Forever Young",    sub: "Dreams never stop blooming"    }
+  { id: 1, src: "https://res.cloudinary.com/dwfm7p4kf/image/upload/v1773160882/WhatsApp_Image_2026-03-10_at_9.33.53_PM_6_hotx1y.jpg", title: "Pure Elegance",    sub: "A soul that radiates light"    },
+  { id: 2, src: "https://res.cloudinary.com/dwfm7p4kf/image/upload/v1773160878/WhatsApp_Image_2026-03-10_at_9.33.53_PM_7_hwnwhe.jpg", title: "Golden Days",      sub: "Every moment, a treasure"      },
+  { id: 3, src: "https://res.cloudinary.com/dwfm7p4kf/image/upload/v1773160860/WhatsApp_Image_2026-03-10_at_9.33.53_PM_5_azrhhf.jpg", title: "Radiant Grace",    sub: "Beautiful inside & out"        },
+  { id: 4, src: "https://res.cloudinary.com/dwfm7p4kf/image/upload/v1773160918/WhatsApp_Image_2026-03-10_at_9.58.47_PM_rswftd.jpg", title: "Star of the Room", sub: "You light up every space"      },
+  { id: 5, src: "https://res.cloudinary.com/dwfm7p4kf/image/upload/v1773160941/WhatsApp_Image_2026-03-10_at_9.58.44_PM_iu90op.jpg", title: "23 & Fabulous",    sub: "Your best chapter starts now"  },
+  { id: 6, src: "https://res.cloudinary.com/dwfm7p4kf/image/upload/v1773160937/WhatsApp_Image_2026-03-10_at_9.58.45_PM_fydzpd.jpg", title: "Forever Young",    sub: "Dreams never stop blooming"    }
 ];
 
 const SLATS = 10;
@@ -345,7 +346,7 @@ export default function TheaterGallery() {
                   <p className="text-yellow-300 text-sm font-semibold tracking-wide">
                     {active.title}
                   </p>
-                  <p className="text-white/42 text-xs mt-0.5">{active.sub}</p>
+                  <p className="text-yellow-200/60 text-xs mt-0.5">{active.sub}</p>
                 </div>
               </motion.div>
             )}

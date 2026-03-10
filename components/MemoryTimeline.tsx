@@ -7,15 +7,15 @@ const ENTRIES = [
     side: "left",
     label: "The Beginning",
     date: "Once upon a time",
-    img: "https://picsum.photos/seed/tl1/500/320",
+    img: "https://res.cloudinary.com/dwfm7p4kf/image/upload/v1773163043/WhatsApp_Image_2026-03-10_at_9.58.45_PM_mrnend.jpg",
     emoji: "🌱",
-    desc: "Every great story has a beautiful beginning. Yours is no different — a spark that lit up the whole sky.",
+    desc: "on a ethinic i saw a girl a spark that lit up the whole sky.",
   },
   {
     side: "right",
     label: "First Adventure",
     date: "A day to remember",
-    img: "https://picsum.photos/seed/tl2/500/320",
+    img: "https://res.cloudinary.com/dwfm7p4kf/image/upload/v1773163015/WhatsApp_Image_2026-03-10_at_9.58.44_PM_dhzrfw.jpg",
     emoji: "🌍",
     desc: "Life is the best adventure, especially when you're the kind of person who makes every moment extraordinary.",
   },
@@ -23,7 +23,7 @@ const ENTRIES = [
     side: "left",
     label: "Pure Laughter",
     date: "The best days",
-    img: "https://picsum.photos/seed/tl3/500/320",
+    img: "https://res.cloudinary.com/dwfm7p4kf/image/upload/v1773160990/WhatsApp_Image_2026-03-10_at_9.53.29_PM_cwlbo3.jpg",
     emoji: "😂",
     desc: "Your laughter is the kind that makes rooms brighter and hearts warmer. Never stop laughing.",
   },
@@ -31,25 +31,25 @@ const ENTRIES = [
     side: "right",
     label: "Golden Moments",
     date: "Sunlit memories",
-    img: "https://picsum.photos/seed/tl4/500/320",
+    img: "https://res.cloudinary.com/dwfm7p4kf/image/upload/v1773160897/WhatsApp_Image_2026-03-10_at_9.58.55_PM_1_lxz53l.jpg",
     emoji: "✨",
     desc: "Some moments are made of pure gold. These are the ones we hold close, long after the day has passed.",
   },
   {
     side: "left",
-    label: "Growing Together",
+    label: "Long Walk",
     date: "Side by side",
-    img: "https://picsum.photos/seed/tl5/500/320",
+    img: "https://res.cloudinary.com/dwfm7p4kf/image/upload/v1773160986/WhatsApp_Image_2026-03-10_at_9.58.44_PM_1_yd4pmd.jpg",
     emoji: "🌸",
-    desc: "The most beautiful thing about time is watching you grow — bolder, wiser, more radiant with every passing year.",
+    desc: "The most beautiful Walks we kissed smiled walked making beautifull memories",
   },
   {
     side: "right",
     label: "Today — 23 🎂",
     date: "March 11, 2026",
-    img: "https://picsum.photos/seed/tl6/500/320",
+    img: "https://res.cloudinary.com/dwfm7p4kf/image/upload/v1773160882/WhatsApp_Image_2026-03-10_at_9.33.53_PM_6_hotx1y.jpg",
     emoji: "🌟",
-    desc: "And now, here we are. A new chapter, a new year, a new page in the most beautiful story ever written.",
+    desc: "And now, here we are. A new chapter, a new year, a new page in the most beautiful story ever written. wishing a best year and a best bday",
   },
 ];
 
@@ -76,7 +76,7 @@ export default function MemoryTimeline() {
         >
           The Story So Far
         </h2>
-        <p className="text-white/28 text-xs tracking-[0.42em] uppercase">
+        <p className="text-white text-xs tracking-[0.42em] uppercase">
           A timeline of beautiful moments ✦
         </p>
       </motion.div>

@@ -3,15 +3,15 @@
 import { motion } from "framer-motion";
 
 const POLAROIDS = [
-  { src: "https://picsum.photos/seed/pol1/260/220", caption: "Just Us 💛",        rot: -6  },
-  { src: "https://picsum.photos/seed/pol2/260/220", caption: "Golden Hour ✨",    rot:  4  },
-  { src: "https://picsum.photos/seed/pol3/260/220", caption: "Best Memories",     rot: -2  },
-  { src: "https://picsum.photos/seed/pol4/260/220", caption: "Pure Happiness 🌸", rot:  6  },
-  { src: "https://picsum.photos/seed/pol5/260/220", caption: "Always Smiling",    rot: -5  },
-  { src: "https://picsum.photos/seed/pol6/260/220", caption: "Radiant & Free 💫", rot:  3  },
-  { src: "https://picsum.photos/seed/pol7/260/220", caption: "Forever Young",     rot: -7  },
-  { src: "https://picsum.photos/seed/pol8/260/220", caption: "Star of My World ⭐",rot:  5  },
-  { src: "https://picsum.photos/seed/pol9/260/220", caption: "Birthday Girl 🎂",  rot: -3  },
+  { src: "https://res.cloudinary.com/dwfm7p4kf/image/upload/v1773163054/WhatsApp_Image_2026-03-10_at_9.33.53_PM_3_tqqsaf.jpg", caption: "Just Us 💛",        rot: -6  },
+  { src: "https://res.cloudinary.com/dwfm7p4kf/image/upload/v1773162977/WhatsApp_Image_2026-03-10_at_9.53.29_PM_q5osfv.jpg", caption: "Golden Hour ✨",    rot:  4  },
+  { src: "https://res.cloudinary.com/dwfm7p4kf/image/upload/v1773163020/WhatsApp_Image_2026-03-10_at_9.54.50_PM_dvakzy.jpg", caption: "Best Memories",     rot: -2  },
+  { src: "https://res.cloudinary.com/dwfm7p4kf/image/upload/v1773162976/WhatsApp_Image_2026-03-10_at_9.53.33_PM_jxzwdr.jpg", caption: "Pure Happiness 🌸", rot:  6  },
+  { src: "https://res.cloudinary.com/dwfm7p4kf/image/upload/v1773163747/WhatsApp_Image_2026-03-10_at_10.40.30_PM_b6phfg.jpg", caption: "Always Smiling",    rot: -5  },
+  { src: "https://res.cloudinary.com/dwfm7p4kf/image/upload/v1773163756/WhatsApp_Image_2026-03-10_at_10.40.27_PM_2_bw1kxv.jpg", caption: "Radiant & Free 💫", rot:  3  },
+  { src: "https://res.cloudinary.com/dwfm7p4kf/image/upload/v1773163736/WhatsApp_Image_2026-03-10_at_10.40.28_PM_yczufc.jpg", caption: "Forever Young",     rot: -7  },
+  { src: "https://res.cloudinary.com/dwfm7p4kf/image/upload/v1773163783/WhatsApp_Image_2026-03-10_at_10.53.53_PM_xcd6qn.jpg", caption: "Star of My World ⭐",rot:  5  },
+  { src: "https://res.cloudinary.com/dwfm7p4kf/image/upload/v1773163776/WhatsApp_Image_2026-03-10_at_10.43.38_PM_bgpeok.jpg", caption: "Birthday Girl 🎂",  rot: -3  },
 ];
 
 const PIN_COLORS = [

@@ -11,6 +11,7 @@ import MemoryTimeline    from "@/components/MemoryTimeline";
 import CandleGame        from "@/components/CandleGame";
 import ScratchCard       from "@/components/ScratchCard";
 import LoveLetter        from "@/components/LoveLetter";
+import ProposalSection   from "@/components/ProposalSection";
 
 const ThreeBackground = dynamic(
   () => import("@/components/ThreeBackground"),
@@ -35,6 +36,7 @@ export default function BirthdayPage() {
       <CandleGame />
       <ScratchCard />
       <LoveLetter />
+      <ProposalSection />
     </main>
   );
 }

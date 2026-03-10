@@ -226,21 +226,7 @@ export default function CandleGame() {
         viewport={{ once: true }}
         className="text-center mb-12"
       >
-        <h2
-          className="font-bold mb-2"
-          style={{
-            fontFamily: "var(--font-dancing)",
-            fontSize: "clamp(32px, 5vw, 62px)",
-            background: "linear-gradient(90deg, #ff9cce, #ffd700, #d4af37)",
-            WebkitBackgroundClip: "text",
-            WebkitTextFillColor: "transparent",
-          }}
-        >
-          Make a Wish! 🎂
-        </h2>
-        <p className="text-white/28 text-xs tracking-[0.42em] uppercase">
-          Click each candle to blow it out ✦
-        </p>
+        
       </motion.div>
 
       {/* Counter or main message */}
@@ -270,7 +256,7 @@ export default function CandleGame() {
               className="shimmer-text font-bold"
               style={{ fontFamily: "var(--font-dancing)", fontSize: 36 }}
             >
-              Make a Wish, Theslin! 🌟
+              Make a Wish, Theslin! Because this year its gonna come true dear 🌟
             </motion.p>
           )}
         </AnimatePresence>

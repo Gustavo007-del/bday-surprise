@@ -218,8 +218,8 @@ export default function ScratchCard() {
                 color: "rgba(245,217,122,0.65)",
               }}
             >
-              Theslin, the world shines brighter because you're in it.
-              Happy 23rd — may every wish you make come true. 🌟
+              Theslin, the world shines brighter because you're in it and iam here because of you
+              Happy 23rd — i love you so much and be with me forever no matter what 🌟
             </p>
           </div>
 
