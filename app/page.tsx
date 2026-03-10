@@ -5,8 +5,13 @@ import BirthdayHero      from "@/components/BirthdayHero";
 import TheaterGallery    from "@/components/TheaterGallery";
 import WishesSection     from "@/components/WishesSection";
 import FloatingParticles from "@/components/FloatingParticles";
+import FilmStrip         from "@/components/FilmStrip";
+import PolaroidBoard     from "@/components/PolaroidBoard";
+import MemoryTimeline    from "@/components/MemoryTimeline";
+import CandleGame        from "@/components/CandleGame";
+import ScratchCard       from "@/components/ScratchCard";
+import LoveLetter        from "@/components/LoveLetter";
 
-// Three.js must be loaded client-side only (no SSR)
 const ThreeBackground = dynamic(
   () => import("@/components/ThreeBackground"),
   { ssr: false }
@@ -15,16 +20,21 @@ const ThreeBackground = dynamic(
 export default function BirthdayPage() {
   return (
     <main className="relative min-h-screen bg-[#07070f]">
-      {/* Layer 0 – Three.js particle universe (fixed) */}
       <ThreeBackground />
-
-      {/* Layer 1 – floating emoji canvas (fixed) */}
       <FloatingParticles />
 
-      {/* Layer 2 – page sections */}
+      {/* ── Original sections ── */}
       <BirthdayHero />
       <TheaterGallery />
       <WishesSection />
+
+      {/* ── New sections ── */}
+      <FilmStrip />
+      <PolaroidBoard />
+      <MemoryTimeline />
+      <CandleGame />
+      <ScratchCard />
+      <LoveLetter />
     </main>
   );
 }
