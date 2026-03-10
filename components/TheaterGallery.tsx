@@ -19,6 +19,88 @@ const IMAGES: Img[] = [
   { id: 6, src: "https://picsum.photos/seed/theslin6/700/460", title: "Forever Young",    sub: "Dreams never stop blooming"    }
 ];
 
+const SLATS = 10;
+type Mode = "blinds" | "spotlight";
+
+/* ─────────────────────────────────────────────
+   Venetian-blind cell
+   Each slat slides from scaleY(1) → scaleY(0)
+   top-to-bottom on reveal, bottom-to-top on hide
+───────────────────────────────────────────── */
+function BlindCell({ img, isActive }: { img: Img; isActive: boolean }) {
+  return (
+    <div className="relative w-full h-full overflow-hidden">
+      {/* Photo behind the slats */}
+      <img
+        src={img.src}
+        alt={img.title}
+        className="absolute inset-0 w-full h-full object-cover transition-transform duration-700"
+        style={{ transform: isActive ? "scale(1.07)" : "scale(1.0)" }}
+      />
+
+      {/* Gold inset glow when active */}
+      <div
+        className="absolute inset-0 pointer-events-none transition-all duration-300"
+        style={{
+          zIndex: 3,
+          boxShadow: isActive
+            ? "inset 0 0 0 2px rgba(212,175,55,0.7), inset 0 0 45px rgba(212,175,55,0.1)"
+            : "inset 0 0 0 1px rgba(255,255,255,0.04)"
+        }}
+      />
+
+      {/* Venetian slats */}
+      {Array.from({ length: SLATS }).map((_, i) => (
+        <motion.div
+          key={i}
+          className="absolute left-0 right-0"
+          style={{
+            top:             `${(i / SLATS) * 100}%`,
+            height:          `${100 / SLATS + 0.4}%`,   // tiny overlap to avoid hairline gaps
+            transformOrigin: "top center",
+            zIndex:          2,
+          }}
+          animate={
+            isActive
+              ? { scaleY: 0, opacity: 0 }
+              : { scaleY: 1, opacity: 1 }
+          }
+          transition={{
+            duration: isActive ? 0.26 : 0.2,
+            delay:    isActive
+              ? i * 0.04                           // open  top → bottom
+              : (SLATS - 1 - i) * 0.03,           // close bottom → top
+            ease: isActive
+              ? [0.22, 1, 0.36, 1]                // smooth open
+              : [0.64, 0, 0.78, 0]                // snap  close
+          }}
+        >
+          {/* Slat body — dark theatre blind */}
+          <div
+            className="w-full h-full relative"
+            style={{
+              background:
+                "linear-gradient(to bottom, #120e20 0%, #1c1430 55%, #0b0916 100%)"
+            }}
+          >
+            {/* Gold shimmer edge at the bottom of every slat */}
+            <div
+              className="absolute bottom-0 left-0 right-0 h-px"
+              style={{
+                background:
+                  "linear-gradient(90deg, transparent 5%, rgba(212,175,55,0.28) 50%, transparent 95%)"
+              }}
+            />
+          </div>
+        </motion.div>
+      ))}
+    </div>
+  );
+}
+
+/* ─────────────────────────────────────────────
+   Main component
+───────────────────────────────────────────── */
 export default function TheaterGallery() {
   const stageRef = useRef<HTMLDivElement>(null);
 
@@ -26,6 +108,7 @@ export default function TheaterGallery() {
   const [onStage, setOnStage] = useState(false);
   const [active,  setActive]  = useState<Img | null>(null);
   const [radius,  setRadius]  = useState(165);
+  const [mode,    setMode]    = useState<Mode>("blinds");
 
   const onMove = useCallback((e: React.MouseEvent) => {
     if (!stageRef.current) return;
@@ -36,13 +119,13 @@ export default function TheaterGallery() {
   return (
     <section className="relative z-10 py-24 px-4 md:px-8">
 
-      {/* Section heading */}
+      {/* ── Heading ── */}
       <motion.div
         initial={{ opacity: 0, y: 40 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.9 }}
-        className="text-center mb-14"
+        className="text-center mb-10"
       >
         <h2
           className="font-bold mb-3"
@@ -56,12 +139,43 @@ export default function TheaterGallery() {
         >
           Gallery of Memories
         </h2>
-        <p className="text-white/32 text-xs tracking-[0.45em] uppercase">
-          Move your cursor across the stage to reveal ✦
-        </p>
+        <motion.p
+          key={mode}
+          initial={{ opacity: 0, y: 6 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="text-white/32 text-xs tracking-[0.45em] uppercase"
+        >
+          {mode === "blinds"
+            ? "Hover each frame to lift the cinema blinds ✦"
+            : "Move your cursor across the stage to reveal ✦"}
+        </motion.p>
       </motion.div>
 
-      {/* Theater wrapper */}
+      {/* ── Mode toggle pills ── */}
+      <div className="flex items-center justify-center gap-3 mb-12">
+        {(["blinds", "spotlight"] as Mode[]).map((m) => (
+          <motion.button
+            key={m}
+            onClick={() => { setMode(m); setActive(null); }}
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.97 }}
+            className="px-5 py-1.5 rounded-full text-xs tracking-widest uppercase transition-colors duration-300"
+            style={{
+              background: mode === m
+                ? "rgba(212,175,55,0.16)"
+                : "rgba(255,255,255,0.04)",
+              border: mode === m
+                ? "1px solid rgba(212,175,55,0.55)"
+                : "1px solid rgba(255,255,255,0.08)",
+              color: mode === m ? "#f5d97a" : "rgba(255,255,255,0.28)"
+            }}
+          >
+            {m === "blinds" ? "🎞 Cinema Blinds" : "🔦 Spotlight"}
+          </motion.button>
+        ))}
+      </div>
+
+      {/* ── Theater wrapper ── */}
       <div className="relative max-w-6xl mx-auto">
 
         {/* Curtain rail */}
@@ -81,7 +195,8 @@ export default function TheaterGallery() {
           style={{
             cursor: "none",
             border: "1px solid rgba(212,175,55,0.18)",
-            boxShadow: "0 0 90px rgba(212,175,55,0.07), 0 50px 130px rgba(0,0,0,0.75)"
+            boxShadow:
+              "0 0 90px rgba(212,175,55,0.07), 0 50px 130px rgba(0,0,0,0.75)"
           }}
           onMouseMove={onMove}
           onMouseEnter={() => setOnStage(true)}
@@ -91,7 +206,7 @@ export default function TheaterGallery() {
             setActive(null);
           }}
         >
-          {/* Image grid */}
+          {/* ── Image grid ── */}
           <div className="grid grid-cols-3 grid-rows-2">
             {IMAGES.map((img, i) => (
               <motion.div
@@ -105,44 +220,66 @@ export default function TheaterGallery() {
                 onMouseEnter={() => setActive(img)}
                 onMouseLeave={() => setActive(null)}
               >
-                <img
-                  src={img.src}
-                  alt={img.title}
-                  className="w-full h-full object-cover transition-transform duration-700"
-                  style={{ transform: active?.id === img.id ? "scale(1.08)" : "scale(1)" }}
-                />
-                <div
-                  className="absolute inset-0 pointer-events-none transition-all duration-400"
-                  style={{
-                    boxShadow:
-                      active?.id === img.id
-                        ? "inset 0 0 0 2px rgba(212,175,55,0.6), inset 0 0 30px rgba(212,175,55,0.12)"
-                        : "inset 0 0 0 1px rgba(255,255,255,0.04)"
-                  }}
-                />
+                {mode === "blinds" ? (
+                  <BlindCell img={img} isActive={active?.id === img.id} />
+                ) : (
+                  <>
+                    <img
+                      src={img.src}
+                      alt={img.title}
+                      className="w-full h-full object-cover transition-transform duration-700"
+                      style={{
+                        transform:
+                          active?.id === img.id ? "scale(1.08)" : "scale(1)"
+                      }}
+                    />
+                    <div
+                      className="absolute inset-0 pointer-events-none transition-all duration-300"
+                      style={{
+                        boxShadow:
+                          active?.id === img.id
+                            ? "inset 0 0 0 2px rgba(212,175,55,0.6), inset 0 0 30px rgba(212,175,55,0.12)"
+                            : "inset 0 0 0 1px rgba(255,255,255,0.04)"
+                      }}
+                    />
+                  </>
+                )}
               </motion.div>
             ))}
           </div>
 
-          {/* SPOTLIGHT DARK OVERLAY — CSS radial-gradient mask trick */}
-          <div
-            className="absolute inset-0 pointer-events-none z-10"
-            style={{
-              transition: "background 60ms linear",
-              background: onStage
-                ? `radial-gradient(
-                     circle ${radius}px at ${cursor.x}px ${cursor.y}px,
-                     transparent        0%,
-                     rgba(0,0,0,0.12)  40%,
-                     rgba(0,0,0,0.88)  68%,
-                     rgba(0,0,0,0.97) 100%
-                   )`
-                : "rgba(0,0,0,0.93)"
-            }}
-          />
+          {/* ── SPOTLIGHT overlay (spotlight mode) ── */}
+          {mode === "spotlight" && (
+            <div
+              className="absolute inset-0 pointer-events-none z-10"
+              style={{
+                transition: "background 60ms linear",
+                background: onStage
+                  ? `radial-gradient(
+                       circle ${radius}px at ${cursor.x}px ${cursor.y}px,
+                       transparent        0%,
+                       rgba(0,0,0,0.12)  40%,
+                       rgba(0,0,0,0.88)  68%,
+                       rgba(0,0,0,0.97) 100%
+                     )`
+                  : "rgba(0,0,0,0.93)"
+              }}
+            />
+          )}
 
-          {/* Golden glow ring at spotlight edge */}
-          {onStage && (
+          {/* ── Soft vignette (blinds mode only — no hard blackout) ── */}
+          {mode === "blinds" && !onStage && (
+            <div
+              className="absolute inset-0 pointer-events-none z-10"
+              style={{
+                background:
+                  "radial-gradient(ellipse at 50% 50%, transparent 20%, rgba(0,0,0,0.55) 100%)"
+              }}
+            />
+          )}
+
+          {/* ── Gold glow ring (spotlight mode) ── */}
+          {mode === "spotlight" && onStage && (
             <div
               className="absolute pointer-events-none z-10 rounded-full"
               style={{
@@ -157,59 +294,77 @@ export default function TheaterGallery() {
             />
           )}
 
-          {/* Custom cursor dot */}
+          {/* ── Custom cursor ── */}
           {onStage && (
             <div
               className="absolute pointer-events-none z-30"
-              style={{ left: cursor.x, top: cursor.y, transform: "translate(-50%,-50%)" }}
+              style={{
+                left:      cursor.x,
+                top:       cursor.y,
+                transform: "translate(-50%,-50%)"
+              }}
             >
-              <div
+              <motion.div
+                animate={{ scale: active ? 1.25 : 1 }}
+                transition={{ duration: 0.2 }}
                 className="w-9 h-9 rounded-full border-2 flex items-center justify-center"
                 style={{ borderColor: "rgba(212,175,55,0.85)" }}
               >
-                <div className="w-2 h-2 rounded-full" style={{ background: "#d4af37" }} />
-              </div>
+                <div
+                  className="w-2 h-2 rounded-full"
+                  style={{ background: "#d4af37" }}
+                />
+              </motion.div>
             </div>
           )}
 
-          {/* Floating label near cursor */}
+          {/* ── Floating label near cursor ── */}
           <AnimatePresence>
             {active && onStage && (
               <motion.div
                 key={active.id}
-                initial={{ opacity: 0, y: 8, scale: 0.9 }}
-                animate={{ opacity: 1, y: 0, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.88 }}
+                initial={{ opacity: 0, y: 10, scale: 0.88 }}
+                animate={{ opacity: 1, y: 0,  scale: 1    }}
+                exit={{    opacity: 0,         scale: 0.88 }}
                 transition={{ duration: 0.22 }}
                 className="absolute pointer-events-none z-30"
-                style={{ left: cursor.x, top: cursor.y + 72, transform: "translateX(-50%)" }}
+                style={{
+                  left:      cursor.x,
+                  top:       cursor.y + 74,
+                  transform: "translateX(-50%)"
+                }}
               >
                 <div
                   className="px-4 py-2 rounded-xl text-center whitespace-nowrap"
                   style={{
-                    background:     "rgba(8,4,18,0.85)",
-                    backdropFilter: "blur(12px)",
-                    border:         "1px solid rgba(212,175,55,0.38)"
+                    background:     "rgba(8,4,18,0.88)",
+                    backdropFilter: "blur(14px)",
+                    border:         "1px solid rgba(212,175,55,0.4)"
                   }}
                 >
-                  <p className="text-yellow-300 text-sm font-semibold tracking-wide">{active.title}</p>
+                  <p className="text-yellow-300 text-sm font-semibold tracking-wide">
+                    {active.title}
+                  </p>
                   <p className="text-white/42 text-xs mt-0.5">{active.sub}</p>
                 </div>
               </motion.div>
             )}
           </AnimatePresence>
 
-          {/* Top marquee */}
+          {/* ── Top marquee ── */}
           <div
             className="absolute top-0 left-0 right-0 z-20 py-2.5 px-4"
-            style={{ background: "linear-gradient(to bottom, rgba(0,0,0,0.78), transparent)" }}
+            style={{
+              background:
+                "linear-gradient(to bottom, rgba(0,0,0,0.8), transparent)"
+            }}
           >
-            <p className="text-center text-yellow-400/42 text-[10px] tracking-[0.45em] uppercase">
+            <p className="text-center text-yellow-400/40 text-[10px] tracking-[0.45em] uppercase">
               ✦ &nbsp;Now Presenting · Theslin's Gallery&nbsp; ✦
             </p>
           </div>
 
-          {/* Stage floor glow */}
+          {/* ── Stage floor glow ── */}
           <div
             className="absolute bottom-0 left-0 right-0 h-px z-20"
             style={{
@@ -218,30 +373,51 @@ export default function TheaterGallery() {
             }}
           />
 
-          {/* Side curtains */}
+          {/* ── Side curtains ── */}
           <div
             className="absolute inset-y-0 left-0 w-12 z-20 pointer-events-none"
-            style={{ background: "linear-gradient(to right, rgba(75,8,8,0.7), transparent)" }}
+            style={{
+              background:
+                "linear-gradient(to right, rgba(75,8,8,0.72), transparent)"
+            }}
           />
           <div
             className="absolute inset-y-0 right-0 w-12 z-20 pointer-events-none"
-            style={{ background: "linear-gradient(to left, rgba(75,8,8,0.7), transparent)" }}
+            style={{
+              background:
+                "linear-gradient(to left, rgba(75,8,8,0.72), transparent)"
+            }}
           />
         </div>
 
-        {/* Spotlight size slider */}
-        <div className="flex items-center justify-center gap-4 mt-7">
-          <span className="text-white/28 text-[11px] tracking-widest uppercase">🔦 Spotlight</span>
-          <input
-            type="range"
-            min={70}
-            max={290}
-            value={radius}
-            onChange={(e) => setRadius(Number(e.target.value))}
-            className="w-36 accent-yellow-400 opacity-45 hover:opacity-90 transition-opacity cursor-pointer"
-          />
-          <span className="text-white/28 text-[11px] tracking-widest uppercase">Size</span>
-        </div>
+        {/* ── Spotlight radius slider (spotlight mode only) ── */}
+        <AnimatePresence>
+          {mode === "spotlight" && (
+            <motion.div
+              initial={{ opacity: 0, y: -8 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{    opacity: 0, y: -8 }}
+              transition={{ duration: 0.3 }}
+              className="flex items-center justify-center gap-4 mt-7"
+            >
+              <span className="text-white/28 text-[11px] tracking-widest uppercase">
+                🔦 Spotlight
+              </span>
+              <input
+                type="range"
+                min={70}
+                max={290}
+                value={radius}
+                onChange={(e) => setRadius(Number(e.target.value))}
+                className="w-36 accent-yellow-400 opacity-45 hover:opacity-90 transition-opacity cursor-pointer"
+              />
+              <span className="text-white/28 text-[11px] tracking-widest uppercase">
+                Size
+              </span>
+            </motion.div>
+          )}
+        </AnimatePresence>
+
       </div>
     </section>
   );
